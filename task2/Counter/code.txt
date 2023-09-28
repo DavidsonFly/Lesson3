@@ -1,0 +1,72 @@
+#include <iostream>
+
+class Counter
+{
+private:
+    int value;
+
+public:
+    
+    Counter():value(1){}
+   
+    Counter(int initialValue):value(initialValue){}
+   
+
+    void increment()
+    {
+        value++;
+    }
+    void decrement()
+    {
+        value--;
+    }
+
+    int getValue()
+    {
+        return value;
+    }
+};
+
+int main()
+{
+    setlocale(LC_ALL, "Rus");
+    
+    int initialValue;
+
+    std::cout << "Если хотите установить первоначальное значение числа, нажмите 'y' или 'Y' для продолжения" << std::endl;
+    char choice;
+    std::cin >> choice;
+    Counter counter;
+    if (choice == 'y' || choice == 'Y')
+    {
+        std::cout << "Введите число:" << std::endl;
+        std::cin >> initialValue;
+        counter = Counter(initialValue);
+    }
+    
+
+    while (true)
+    {
+        std::cout << "Введите одну из команд: (+/-/=/x):" << std::endl;
+        char command;
+        std::cin >> command;
+
+        switch (command)
+        {
+        case '+':
+            counter.increment();
+            break;
+        case '-':
+            counter.decrement();
+        case '=':
+            std::cout << "Текущее значение:" << " " << counter.getValue() << std::endl;
+            continue;
+        case 'x':
+            return 0;
+        default:
+            std::cout << "Введена неправильная команда. Введите пожалуйста(+/-/=/x):" << std::endl;
+        }
+    }
+
+    return 0;
+}
